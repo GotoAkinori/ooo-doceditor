@@ -1,0 +1,127 @@
+:root {
+    --toolpane-height: 40px;
+    --datapane-width: 400px;
+}
+
+#editpane {
+    position: absolute;
+    top: var(--toolpane-height);
+    left: 0px;
+    right: var(--datapane-width);
+    bottom: 0px;
+    background-color: white;
+    padding: 10px;
+}
+
+#toolpane {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: var(--datapane-width);
+    height: var(--toolpane-height);
+    background-color: #EEF;
+}
+
+#toolpane button {
+    border: solid 2px #CCE;
+    border-radius: 5px;
+    background-color: white;
+    min-width: 48px;
+    height: 32px;
+    margin: 3px;
+}
+
+#toolpane button:hover {
+    background-color: #EEE;
+}
+
+#datapane {
+    position: absolute;
+    top: 0px;
+    left: calc(100% - var(--datapane-width));
+    right: 0px;
+    bottom: 0px;
+    background-color: #F8F8F8;
+}
+
+.DeDataPane_header {
+    box-sizing: border-box;
+    user-select: none;
+    height: 30px;
+    width: 100%;
+    padding: 2px 10px;
+    font-weight: bold;
+    text-align: center;
+    border: solid 1px #DDD;
+    background-color: #F8F8F8;
+}
+
+.DeDataPane_body {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 2px 10px;
+    border: solid 1px #DDD;
+    background-color: white;
+    overflow: hidden;
+}
+
+.DeDataPane_top {
+    position: relative;
+    width: cal(100% - 10px);
+    margin: 5px;
+    background-color: white;
+}
+
+.DeDataPane_icon {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    top: 3px;
+    right: 3px;
+}
+
+.DeDataPane_input {
+    width: 100%;
+    border: lightgray solid 1px;
+}
+
+button.DeButton {
+    border: solid 2px #CCE;
+    border-radius: 5px;
+    background-color: white;
+    min-width: 48px;
+    height: 32px;
+    margin: 3px;
+}
+
+button.DeButton:hover {
+    background-color: #EEE;
+}
+
+/* ---------------- table ---------------- */
+
+#editpane table {
+    border-collapse: collapse;
+}
+
+#editpane table td {
+    border: black 1px solid;
+}
+
+/* deAlter */
+
+#editpane table.deAlter tr:nth-child(odd) td {
+    background-color: #EEF;
+}
+
+#editpane table.deAlter tr:nth-child(even) td {
+    background-color: white;
+}
+
+/* deHeader */
+
+#editpane table.deHeader tr:first-child td {
+    background-color: #ACC;
+    text-align: center;
+    font-weight: bold;
+}

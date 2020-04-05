@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../css/editor.css" />
+    <script src="../js/editor.js"></script>
+    <script>
+        let edit;
+        function save() {
+            edit.save( "test" );
+        }
+        function load() {
+            edit.load( "test" );
+        }
+        function onload() {
+            edit = new ooo.doceditor.DeEditor( "editpane", "toolpane", "datapane_body" );
+        }
+    </script>
+</head>
+
+<body onload="onload()">
+    <div id="editpane" contenteditable="true">
+        <div>editpane 1</div>
+        <div>editpane 2</div>
+        <div>editpane 3</div>
+    </div>
+    <div id="toolpane">
+        <button onclick="load();">Load</button>
+        <button onclick="save();">Save</button>&nbsp;&nbsp;
+    </div>
+    <div id="datapane">
+        <div id="datapane_body">
+        </div>
+    </div>
+</body>
+
+</html>
