@@ -17,5 +17,31 @@ namespace ooo.doceditor.elements {
                 element.editor.focus(element, ev);
             });
         }
+        def.onDelete = (element) => {
+            let text = element.element.innerText;
+
+            let prev = element.element.previousSibling;
+            let next = element.element.nextSibling;
+            if (prev instanceof Text) {
+                if (next instanceof Text) {
+                    prev.nodeValue = prev.nodeValue + text + next.nodeValue;
+                    element.element.remove();
+                    next.remove();
+                } else {
+                    prev.nodeValue = prev.nodeValue + text;
+                    element.element.remove();
+                }
+            } else {
+                if (next instanceof Text) {
+                    next.nodeValue = text + next.nodeValue;
+                    element.element.remove();
+                } else {
+                    let textElement = document.createTextNode(text);
+                    element.element.parentElement?.insertBefore(textElement, next);
+                    element.element.remove();
+                }
+            }
+
+        }
     }
 }

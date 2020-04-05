@@ -84,6 +84,18 @@ namespace ooo.doceditor {
                 data: {}
             },
             {
+                name: "textarea",
+                caption: "Text Area",
+                content: "textarea",
+                attribute: {
+                    name: {
+                        default: ""
+                    }
+                },
+                style: {},
+                data: {}
+            },
+            {
                 name: "table",
                 caption: "<span style='border:1px black solid'>Table</span>",
                 content: "table",

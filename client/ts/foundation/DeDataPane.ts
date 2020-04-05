@@ -18,10 +18,23 @@ namespace ooo.doceditor {
 
         public show(element: DeElement, ev?: MouseEvent) {
             this.clear();
+            this.showBasicCommand(element);
             elements.DeElementDef.fireView(element, this.container, ev);
             this.showData(element);
             this.showAttribute(element);
             this.showStyle(element);
+        }
+
+        private showBasicCommand(element: DeElement) {
+            // delete button
+            {
+                let button = addButton(this.container, "DeButton");
+                button.innerHTML = "Delete Element";
+                button.addEventListener("click", () => {
+                    element.remove();
+                    this.clear();
+                });
+            }
         }
 
         private showAttribute(element: DeElement) {

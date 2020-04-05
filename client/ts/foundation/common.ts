@@ -1,33 +1,4 @@
 namespace ooo.doceditor {
-    export class EdCommonTable {
-        private table: HTMLTableElement;
-        private columns: number;
-
-        public constructor(container: HTMLElement, columns: number) {
-            if (container.tagName.toUpperCase() === "TABLE") {
-                this.table = container as HTMLTableElement;
-            } else {
-                this.table = document.createElement("table");
-                container.appendChild(this.table);
-            }
-            this.columns = columns;
-        }
-
-        public addRow(): [HTMLTableRowElement, HTMLTableCellElement[]] {
-            const tr = document.createElement("tr");
-            this.table.appendChild(tr);
-            const tds: HTMLTableCellElement[] = [];
-
-            for (let i = 0; i < this.columns; i++) {
-                const td = document.createElement("td");
-                tr.appendChild(td);
-                tds.push(td);
-            }
-
-            return [tr, tds];
-        }
-    }
-
     export function newDataDiv(closed: boolean = false): [HTMLDivElement, HTMLDivElement, HTMLDivElement] {
         let _closed = closed;
         let top = document.createElement("div");

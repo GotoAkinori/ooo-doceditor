@@ -40,6 +40,18 @@ namespace ooo.doceditor.elements {
             }
         }
 
+        // Event Load
+        public onDelete: ((element: DeElement) => void) | null = null;
+        public static fireDelete(element: DeElement): void {
+            for (let i = DeElementDef.defList.length - 1; i >= 0; i--) {
+                let def = DeElementDef.defList[i];
+                if (def.check(element.conf) && def.onDelete !== null) {
+                    def.onDelete(element);
+                    return;
+                }
+            }
+        }
+
         // Event Data View
         public onView: ((element: DeElement, container: HTMLElement, ev?: MouseEvent) => void) | null = null;
         public static fireView(element: DeElement, container: HTMLElement, ev?: MouseEvent): void {

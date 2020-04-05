@@ -106,6 +106,7 @@ button.DeButton:hover {
 
 #editpane table td {
     border: black 1px solid;
+    padding: 2px 20px;
 }
 
 /* deAlter */

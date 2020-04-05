@@ -74,5 +74,10 @@ namespace ooo.doceditor {
                 loadedElem.setLoadInfo(info[key]);
             }
         }
+
+        public remove() {
+            elements.DeElementDef.fireDelete(this);
+            delete deElementList[this.id];
+        }
     }
 }
