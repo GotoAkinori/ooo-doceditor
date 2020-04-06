@@ -41,7 +41,6 @@ namespace ooo.doceditor.elements {
                     element.element.remove();
                 }
             }
-
         }
     }
 }

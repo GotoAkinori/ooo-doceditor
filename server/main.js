@@ -12,14 +12,26 @@ function errorLog( err ) {
     return id;
 }
 
+function getPath( type ) {
+    switch ( type ) {
+        case "form": return "./server/database/form/";
+        case "document": return "./server/database/document/";
+        default: return "";
+    }
+}
+
 app.use( bodyParser.urlencoded( {
     extended: true
 } ) );
 app.use( bodyParser.json() );
 app.use( "/docedit", express.static( __dirname + "\\..\\client" ) );
 
-app.get( "/form/:id", ( req, res ) => {
-    fs.readFile( "./server/database/form/" + req.params.id + ".json", ( err, data ) => {
+app.get( "/data/:type/:id", ( req, res ) => {
+    let path = getPath( req.params.type );
+    if ( path === "" ) {
+        res.status( 404 ).send( "[code: " + errorLog( err ) + "] path not exists" );
+    }
+    fs.readFile( path + req.params.id + ".json", ( err, data ) => {
         if ( err ) {
             res.status( 500 ).send( "[code: " + errorLog( err ) + "] read error" );
         } else {
@@ -27,8 +39,12 @@ app.get( "/form/:id", ( req, res ) => {
         }
     } );
 } );
-app.post( "/form/:id", ( req, res ) => {
-    fs.writeFile( "./server/database/form/" + req.params.id + ".json", JSON.stringify( req.body ), ( err ) => {
+app.post( "/data/:type/:id", ( req, res ) => {
+    let path = getPath( req.params.type );
+    if ( path === "" ) {
+        res.status( 404 ).send( "[code: " + errorLog( err ) + "] path not exists" );
+    }
+    fs.writeFile( path + req.params.id + ".json", JSON.stringify( req.body ), ( err ) => {
         if ( err ) {
             res.status( 500 ).send( "[code: " + errorLog( err ) + "] write error" );
         } else {
@@ -36,8 +52,12 @@ app.post( "/form/:id", ( req, res ) => {
         }
     } );
 } );
-app.put( "/form/:id", ( req, res ) => {
-    fs.writeFile( "./server/database/form/" + req.params.id + ".json", JSON.stringify( req.body ), ( err ) => {
+app.put( "/data/:type/:id", ( req, res ) => {
+    let path = getPath( req.params.type );
+    if ( path === "" ) {
+        res.status( 404 ).send( "[code: " + errorLog( err ) + "] path not exists" );
+    }
+    fs.writeFile( path + req.params.id + ".json", JSON.stringify( req.body ), ( err ) => {
         if ( err ) {
             res.status( 500 ).send( "[code: " + errorLog( err ) + "] put error" );
         } else {
@@ -45,8 +65,12 @@ app.put( "/form/:id", ( req, res ) => {
         }
     } );
 } );
-app.delete( "/form/:id", ( req, res ) => {
-    fs.unlink( "./server/database/form/" + req.params.id + ".json", ( err ) => {
+app.delete( "/data/:type/:id", ( req, res ) => {
+    let path = getPath( req.params.type );
+    if ( path === "" ) {
+        res.status( 404 ).send( "[code: " + errorLog( err ) + "] path not exists" );
+    }
+    fs.unlink( path + req.params.id + ".json", ( err ) => {
         if ( err ) {
             res.status( 500 ).send( "[code: " + errorLog( err ) + "] put error" );
         } else {

@@ -1,2 +1,4 @@
 node_modules/
 client/js/
+server/database/form/*.json
+server/database/document/*.json

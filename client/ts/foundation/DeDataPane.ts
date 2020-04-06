@@ -70,6 +70,10 @@ namespace ooo.doceditor {
                 let [, [td1, td2]] = table.addRow();
                 td1.innerText = "Class";
                 let input = addInput(td2, "DeDataPane_input");
+                if (element.conf.class) {
+                    input.value = element.conf.class;
+                    element.element.className = element.conf.class;
+                }
                 input.addEventListener("blur", () => {
                     element.element.className = input.value;
                 });

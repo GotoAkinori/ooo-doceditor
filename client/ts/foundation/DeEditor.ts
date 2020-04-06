@@ -48,14 +48,14 @@ namespace ooo.doceditor {
         }
 
         public async save(id: string) {
-            await ioSave({
+            await ioSaveForm({
                 nextElementId: nextId,
                 html: this.editpane.getHtml(),
                 elements: DeElement.getElementsSaveInfo()
             }, id);
         }
         public async load(id: string) {
-            let result = await ioLoad(id);
+            let result = await ioLoadForm(id);
 
             nextId = result.nextId;
             this.editpane.setHtml(result.html);

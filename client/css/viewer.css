@@ -1,0 +1,28 @@
+/* ---------------- table ---------------- */
+
+table.deEditor {
+    border-collapse: collapse;
+}
+
+table.deEditor td {
+    border: black 1px solid;
+    padding: 2px 20px;
+}
+
+/* deAlter */
+
+table.deEditor.deAlter tr:nth-child(odd) td {
+    background-color: #EEF;
+}
+
+table.deEditor.deAlter tr:nth-child(even) td {
+    background-color: white;
+}
+
+/* deHeader */
+
+table.deEditor.deHeader tr:first-child td {
+    background-color: #ACC;
+    text-align: center;
+    font-weight: bold;
+}

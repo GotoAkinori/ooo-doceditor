@@ -97,32 +97,3 @@ button.DeButton {
 button.DeButton:hover {
     background-color: #EEE;
 }
-
-/* ---------------- table ---------------- */
-
-#editpane table {
-    border-collapse: collapse;
-}
-
-#editpane table td {
-    border: black 1px solid;
-    padding: 2px 20px;
-}
-
-/* deAlter */
-
-#editpane table.deAlter tr:nth-child(odd) td {
-    background-color: #EEF;
-}
-
-#editpane table.deAlter tr:nth-child(even) td {
-    background-color: white;
-}
-
-/* deHeader */
-
-#editpane table.deHeader tr:first-child td {
-    background-color: #ACC;
-    text-align: center;
-    font-weight: bold;
-}

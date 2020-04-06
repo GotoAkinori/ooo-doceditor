@@ -27,6 +27,7 @@ namespace ooo.doceditor {
         name: string,
         caption: string,
         content: string,
+        class?: string,
         attribute: { [key: string]: { default: string } },
         style: { [key: string]: { default: string } },
         data: { [key: string]: { default: string, message?: string } }
@@ -99,6 +100,7 @@ namespace ooo.doceditor {
                 name: "table",
                 caption: "<span style='border:1px black solid'>Table</span>",
                 content: "table",
+                class: "deEditor deAlter deHeader",
                 attribute: {},
                 style: {},
                 data: {}
