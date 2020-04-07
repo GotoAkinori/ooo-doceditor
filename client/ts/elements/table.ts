@@ -18,13 +18,13 @@ namespace ooo.doceditor.elements {
             }
 
             element.element.addEventListener("click", (ev) => {
-                element.editor.focus(element, ev);
+                element.editor?.focus(element, ev);
             });
         }
         def.onLoad = (element) => {
             table = new EdCommonTable(element.element);
             element.element.addEventListener("click", (ev) => {
-                element.editor.focus(element, ev);
+                element.editor?.focus(element, ev);
             });
         }
         def.onView = (element, container, ev) => {

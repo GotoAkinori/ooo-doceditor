@@ -91,6 +91,8 @@ namespace ooo.doceditor {
                     }
                 }
             }
+
+            this.columns--;
         }
 
         public deleteRow(td: HTMLTableDataCellElement) {

@@ -3,7 +3,9 @@ namespace ooo.doceditor {
         return new Promise((resolve, reject) => {
             let req = new XMLHttpRequest();
             req.addEventListener("load", (result) => {
-                resolve(JSON.parse(req.responseText));
+                if (req.responseText) {
+                    resolve(JSON.parse(req.responseText));
+                }
             });
             req.addEventListener("error", (err) => { console.log("Error"); reject(err); });
             req.addEventListener("abort", (err) => { console.log("Abort"); reject(err); });
@@ -23,7 +25,7 @@ namespace ooo.doceditor {
     export async function ioSaveDocument(data: any, id: string): Promise<any> {
         return await ioRequest("POST", data, "document", id);
     }
-    export async function ioLoadDocument(data: any, id: string): Promise<any> {
+    export async function ioLoadDocument(id: string): Promise<any> {
         return await ioRequest("GET", undefined, "document", id);
     }
 }

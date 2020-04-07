@@ -10,14 +10,20 @@ namespace ooo.doceditor.elements {
             element.values.attributes["value"] = text;
 
             element.element.addEventListener("click", (ev) => {
-                element.editor.focus(element, ev);
+                element.editor?.focus(element, ev);
             });
         }
         def.onLoad = (element) => {
             (element.element as HTMLInputElement).value = element.values.attributes["value"] ?? "";
             element.element.addEventListener("click", (ev) => {
-                element.editor.focus(element, ev);
+                element.editor?.focus(element, ev);
             });
+        }
+        def.onGetData = (element, dataHolder) => {
+            dataHolder[(element.element as HTMLInputElement).name] = (element.element as HTMLInputElement).value ?? "";
+        }
+        def.onSetData = (element, dataHolder) => {
+            (element.element as HTMLInputElement).value = dataHolder[(element.element as HTMLInputElement).name];
         }
     }
 }

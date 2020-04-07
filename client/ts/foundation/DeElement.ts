@@ -2,7 +2,6 @@ namespace ooo.doceditor {
     type valueMap = { [key: string]: string | null };
     type values = { style: valueMap, attributes: valueMap, data: valueMap };
     const deElementList: { [key: string]: DeElement } = {};
-    const elementDefinitions: any[] = [];
 
     export let nextId = 0;
     function getNextId(): string {
@@ -14,9 +13,8 @@ namespace ooo.doceditor {
         public conf!: deElementConf;
         public element!: HTMLElement;
         public id!: string;
-        public name: string = "";
 
-        public editor: DeEditor;
+        public editor?: DeEditor;
         public extValues: any = {};
 
         public values: values = {
@@ -25,7 +23,7 @@ namespace ooo.doceditor {
             data: {}
         }
 
-        public constructor(editor: DeEditor) {
+        public constructor(editor?: DeEditor) {
             this.editor = editor;
         }
 
@@ -39,7 +37,7 @@ namespace ooo.doceditor {
             deElementList[this.id] = this;
         }
 
-        public getSaveInfo(): any {
+        public getSaveFormInfo(): any {
             return {
                 values: this.values,
                 id: this.id,
@@ -48,30 +46,49 @@ namespace ooo.doceditor {
             }
         }
 
-        public setLoadInfo(info: any) {
+        public setLoadFormInfo(info: any) {
             this.values = info.values;
             this.id = info.id;
             this.extValues = info.extValues;
             this.element = document.getElementById(info.id)!;
-            this.name = info.confName;
             this.conf = getElementConfByName(info.confName)!;
             elements.DeElementDef.fireLoad(this);
 
             deElementList[this.id] = this;
         }
 
-        public static getElementsSaveInfo() {
+        public static getElementsSaveFormInfo() {
             let info: { [key: string]: any } = {};
             for (let key in deElementList) {
-                info[key] = deElementList[key].getSaveInfo();
+                info[key] = deElementList[key].getSaveFormInfo();
             }
             return info;
         }
 
-        public static setElementsLoadInfo(editor: DeEditor, info: { [key: string]: any }) {
+        public static setElementsLoadFormInfo(editor: DeEditor | undefined, info: { [key: string]: any }) {
             for (let key in info) {
                 let loadedElem = new DeElement(editor);
-                loadedElem.setLoadInfo(info[key]);
+                loadedElem.setLoadFormInfo(info[key]);
+            }
+        }
+
+        public getSaveDocumentInfo(dataHolder: { [key: string]: any }) {
+            elements.DeElementDef.fireGetData(this, dataHolder);
+        }
+
+        public setLoadDocumentInfo(dataHolder: { [key: string]: any }) {
+            elements.DeElementDef.fireSetData(this, dataHolder);
+        }
+
+        public static getElementsSaveDocumentInfo(dataHolder: { [key: string]: any }) {
+            for (let key in deElementList) {
+                deElementList[key].getSaveDocumentInfo(dataHolder);
+            }
+        }
+
+        public static setElementsLoadDocumentInfo(dataHolder: { [key: string]: any }) {
+            for (let key in deElementList) {
+                deElementList[key].setLoadDocumentInfo(dataHolder);
             }
         }
 

@@ -1,4 +1,14 @@
 namespace ooo.doceditor {
+
+    let _initialized = false;
+    export function init() {
+        if (_initialized == false) {
+            initMessage();
+            elements.init();
+            _initialized = true;
+        }
+    }
+
     export function newDataDiv(closed: boolean = false): [HTMLDivElement, HTMLDivElement, HTMLDivElement] {
         let _closed = closed;
         let top = document.createElement("div");

@@ -3,14 +3,29 @@
 
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="../css/editor.css" />
-    <script src="../js/viewer.js"></script>
+    <link rel="stylesheet" href="../css/viewer.css" />
+    <script src="../js/editor.js"></script>
     <script>
+        let viewer;
+
+        function onload() {
+            viewer = new ooo.doceditor.DeViewer( "viewer" );
+            viewer.newDoc( "test" );
+        }
+
+        function load() {
+            viewer.load( "test-01" );
+        }
+        function save() {
+            viewer.save( "test-01" );
+        }
     </script>
 </head>
 
 <body onload="onload()">
-    <div>
+    <button onclick="save()">Save</button>
+    <button onclick="load()">Load</button>
+    <div id="viewer">
     </div>
 </body>
 

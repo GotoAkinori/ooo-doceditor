@@ -9,12 +9,12 @@ namespace ooo.doceditor.elements {
             element.element.innerText = text;
 
             element.element.addEventListener("click", (ev) => {
-                element.editor.focus(element, ev);
+                element.editor?.focus(element, ev);
             });
         }
         def.onLoad = (element) => {
             element.element.addEventListener("click", (ev) => {
-                element.editor.focus(element, ev);
+                element.editor?.focus(element, ev);
             });
         }
         def.onDelete = (element) => {
@@ -42,5 +42,7 @@ namespace ooo.doceditor.elements {
                 }
             }
         }
+        def.onGetData = (element, dataHolder) => { }
+        def.onSetData = (element, dataHolder) => { }
     }
 }

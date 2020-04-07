@@ -13,9 +13,7 @@ namespace ooo.doceditor {
             this.toolpane = new DeToolPane(this, toolpane);
             this.datapane = new DeDataPane(this, datapane);
 
-            if (DeEditor.initialized == false) {
-                DeEditor.init();
-            }
+            init();
         }
 
         public append(conf: deElementConf) {
@@ -39,19 +37,11 @@ namespace ooo.doceditor {
             this.__onfocusSyncFlag = false;
         }
 
-        static initialized = false;
-        public static init() {
-            initMessage();
-            elements.init();
-
-            this.initialized = true;
-        }
-
         public async save(id: string) {
             await ioSaveForm({
                 nextElementId: nextId,
                 html: this.editpane.getHtml(),
-                elements: DeElement.getElementsSaveInfo()
+                elements: DeElement.getElementsSaveFormInfo()
             }, id);
         }
         public async load(id: string) {
@@ -59,7 +49,7 @@ namespace ooo.doceditor {
 
             nextId = result.nextId;
             this.editpane.setHtml(result.html);
-            DeElement.setElementsLoadInfo(this, result.elements);
+            DeElement.setElementsLoadFormInfo(this, result.elements);
         }
     }
 }
