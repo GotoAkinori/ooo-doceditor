@@ -104,6 +104,24 @@ namespace ooo.doceditor {
                 attribute: {},
                 style: {},
                 data: {}
+            },
+            {
+                name: "file",
+                caption: "📄 File",
+                content: "div",
+                attribute: {
+                    name: {
+                        default: ""
+                    }
+                },
+                style: {
+                    "border-color": { default: "gray" },
+                    "border-style": { default: "dotted" },
+                    "border-width": { default: "1px" },
+                    "width": { default: "100px" },
+                    "height": { default: "140px" }
+                },
+                data: {}
             }
         ]
     }

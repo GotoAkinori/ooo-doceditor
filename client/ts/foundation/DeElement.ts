@@ -72,23 +72,15 @@ namespace ooo.doceditor {
             }
         }
 
-        public getSaveDocumentInfo(dataHolder: { [key: string]: any }) {
-            elements.DeElementDef.fireGetData(this, dataHolder);
-        }
-
-        public setLoadDocumentInfo(dataHolder: { [key: string]: any }) {
-            elements.DeElementDef.fireSetData(this, dataHolder);
-        }
-
-        public static getElementsSaveDocumentInfo(dataHolder: { [key: string]: any }) {
+        public static getElementsSaveDocumentInfo(dataHolder: { [key: string]: any }, fileHolder: { [key: string]: { filename: string, file: Blob }[] }) {
             for (let key in deElementList) {
-                deElementList[key].getSaveDocumentInfo(dataHolder);
+                elements.DeElementDef.fireGetData(deElementList[key], dataHolder, fileHolder);
             }
         }
 
         public static setElementsLoadDocumentInfo(dataHolder: { [key: string]: any }) {
             for (let key in deElementList) {
-                deElementList[key].setLoadDocumentInfo(dataHolder);
+                elements.DeElementDef.fireSetData(deElementList[key], dataHolder);
             }
         }
 

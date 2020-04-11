@@ -7,8 +7,15 @@
         {
             "type": "chrome",
             "request": "launch",
-            "name": "Launch Chrome against localhost",
+            "name": "Chrome-Editor",
             "url": "http://localhost:3000/docedit/html/editor.html",
+            "webRoot": "${workspaceFolder}/client"
+        },
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Chrome-Editor",
+            "url": "http://localhost:3000/docedit/html/viewer.html",
             "webRoot": "${workspaceFolder}/client"
         }
     ]

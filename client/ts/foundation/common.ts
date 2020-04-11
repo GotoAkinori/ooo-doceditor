@@ -60,6 +60,20 @@ namespace ooo.doceditor {
         return button;
     }
 
+    let imageBasePath = "../icon/"
+    export function setImagePath(imagePath: string) {
+        imageBasePath = imagePath;
+    }
+    export function addImage(container: HTMLElement, iconName: string, className?: string): HTMLImageElement {
+        let img = document.createElement("img");
+        container.appendChild(img);
+        img.src = imageBasePath + iconName;
+        if (className) {
+            img.classList.add(className);
+        }
+        return img;
+    }
+
     export function getCamelCase(s: string): string {
         let result = "";
         for (let i = 0; i < s.length; i++) {

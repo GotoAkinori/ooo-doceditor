@@ -1,5 +1,5 @@
 namespace ooo.doceditor {
-    export class EdCommonTable {
+    export class DeCommonTable {
         private table: HTMLTableElement;
         private columns: number;
 
@@ -22,6 +22,14 @@ namespace ooo.doceditor {
 
         public addRow(): [HTMLTableRowElement, HTMLTableCellElement[]] {
             const tr = document.createElement("tr");
+            let target: HTMLTableElement | HTMLTableSectionElement;
+            let tbody = this.table.querySelector("tbody");
+            if (tbody !== null) {
+                target = tbody;
+            } else {
+                target = this.table;
+            }
+
             this.table.appendChild(tr);
             const tds: HTMLTableCellElement[] = [];
 

@@ -42,7 +42,7 @@ namespace ooo.doceditor {
             this.container.appendChild(top);
             header.innerHTML = "Attributes"
 
-            let table = new EdCommonTable(body, 2);
+            let table = new DeCommonTable(body, 2);
 
             for (let key in element.conf.attribute) {
                 let [, [td1, td2]] = table.addRow();
@@ -66,7 +66,7 @@ namespace ooo.doceditor {
 
             {
                 // class
-                let table = new EdCommonTable(body, 2);
+                let table = new DeCommonTable(body, 2);
                 let [, [td1, td2]] = table.addRow();
                 td1.innerText = "Class";
                 let input = addInput(td2, "DeDataPane_input");
@@ -84,7 +84,7 @@ namespace ooo.doceditor {
                 body.appendChild(sTop);
                 sHeader.innerHTML = section.section;
 
-                let table = new EdCommonTable(sBody, 2);
+                let table = new DeCommonTable(sBody, 2);
                 for (let style of section.styles) {
                     let [, [td1, td2]] = table.addRow();
                     td1.innerHTML = style.name;
@@ -106,7 +106,7 @@ namespace ooo.doceditor {
             this.container.appendChild(top);
             header.innerHTML = "Data"
 
-            let table = new EdCommonTable(body, 3);
+            let table = new DeCommonTable(body, 3);
 
             for (let key in element.conf.data) {
                 let [, [td1, td2, td3]] = table.addRow();

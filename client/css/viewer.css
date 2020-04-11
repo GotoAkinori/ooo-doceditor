@@ -26,3 +26,18 @@ table.deEditor.deHeader tr:first-child td {
     text-align: center;
     font-weight: bold;
 }
+
+/* file */
+
+button.file-edit {
+    border: 1px lightgray solid;
+    background-color: transparent;
+    width: 24px;
+    height: 24px;
+    padding: 0px;
+    margin: 0px 3px;
+}
+
+button.file-edit:hover {
+    background-color: lightgray;
+}

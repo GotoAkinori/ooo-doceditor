@@ -1,6 +1,6 @@
 namespace ooo.doceditor.elements {
     export function defineElementTable() {
-        let table: EdCommonTable;
+        let table: DeCommonTable;
 
         let def = new DeElementDef();
         def.check = (conf) => {
@@ -12,7 +12,7 @@ namespace ooo.doceditor.elements {
             // create 3 * 3
             const initRows = 3;
             const initCols = 3;
-            table = new EdCommonTable(element.element, initCols);
+            table = new DeCommonTable(element.element, initCols);
             for (let i = 0; i < initRows; i++) {
                 table.addRow();
             }
@@ -22,7 +22,7 @@ namespace ooo.doceditor.elements {
             });
         }
         def.onLoad = (element) => {
-            table = new EdCommonTable(element.element);
+            table = new DeCommonTable(element.element);
             element.element.addEventListener("click", (ev) => {
                 element.editor?.focus(element, ev);
             });

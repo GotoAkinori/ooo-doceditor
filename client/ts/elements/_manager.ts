@@ -5,6 +5,7 @@ namespace ooo.doceditor.elements {
         defineElementInput();
         defineElementTable();
         defineElementTextArea();
+        defineElementFile();
     }
 
     export class DeElementDef {
@@ -66,12 +67,12 @@ namespace ooo.doceditor.elements {
         }
 
         // Event Get Data
-        public onGetData: ((element: DeElement, dataHolder: { [key: string]: any }) => void) | null = null;
-        public static fireGetData(element: DeElement, dataHolder: { [key: string]: any }): void {
+        public onGetData: ((element: DeElement, dataHolder: { [key: string]: any }, fileHolder: { [key: string]: { filename: string, file: Blob }[] }) => void) | null = null;
+        public static fireGetData(element: DeElement, dataHolder: { [key: string]: any }, fileHolder: { [key: string]: { filename: string, file: Blob }[] }): void {
             for (let i = DeElementDef.defList.length - 1; i >= 0; i--) {
                 let def = DeElementDef.defList[i];
                 if (def.check(element.conf) && def.onGetData !== null) {
-                    def.onGetData(element, dataHolder);
+                    def.onGetData(element, dataHolder, fileHolder);
                     return;
                 }
             }

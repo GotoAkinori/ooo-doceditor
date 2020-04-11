@@ -31,12 +31,19 @@ namespace ooo.doceditor {
 
         public async save(id: string) {
             let dataHolder: { [key: string]: any } = {};
-            DeElement.getElementsSaveDocumentInfo(dataHolder);
+            let fileHolder: { [key: string]: { filename: string, file: Blob }[] } = {};
+            DeElement.getElementsSaveDocumentInfo(dataHolder, fileHolder);
 
             await ioSaveDocument({
                 data: dataHolder,
                 formId: this.formId
             }, id);
+
+            for (let elementKey in fileHolder) {
+                for (let fileInfo of fileHolder[elementKey]) {
+                    await ioSaveFile(fileInfo.file, id, elementKey, fileInfo.filename);
+                }
+            }
         }
 
         public async load(id: string) {
