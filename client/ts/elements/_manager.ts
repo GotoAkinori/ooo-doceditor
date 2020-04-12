@@ -79,12 +79,12 @@ namespace ooo.doceditor.elements {
         }
 
         // Event Set Data
-        public onSetData: ((element: DeElement, dataHolder: { [key: string]: any }) => void) | null = null;
-        public static fireSetData(element: DeElement, dataHolder: { [key: string]: any }): void {
+        public onSetData: ((element: DeElement, dataHolder: { [key: string]: any }, viewer: DeViewer) => void) | null = null;
+        public static fireSetData(element: DeElement, dataHolder: { [key: string]: any }, viewer: DeViewer): void {
             for (let i = DeElementDef.defList.length - 1; i >= 0; i--) {
                 let def = DeElementDef.defList[i];
                 if (def.check(element.conf) && def.onSetData !== null) {
-                    def.onSetData(element, dataHolder);
+                    def.onSetData(element, dataHolder, viewer);
                     return;
                 }
             }

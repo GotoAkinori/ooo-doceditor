@@ -7,6 +7,7 @@ namespace ooo.doceditor {
             tags: string[]
         };
         public formId: string = "";
+        public docId: string = "";
 
         public constructor(
             container: HTMLElement | string
@@ -47,9 +48,10 @@ namespace ooo.doceditor {
         }
 
         public async load(id: string) {
+            this.docId = id;
             let documentData = await ioLoadDocument(id);
             await this.newDoc(documentData.formId);
-            DeElement.setElementsLoadDocumentInfo(documentData.data);
+            DeElement.setElementsLoadDocumentInfo(documentData.data, this);
         }
     }
 }

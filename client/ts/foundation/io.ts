@@ -50,7 +50,7 @@ namespace ooo.doceditor {
             req.addEventListener("timeout", (err) => { console.log("Timeout"); reject(err); });
             req.open(method, "../../data/" + path);
             req.responseType = "blob";
-            req.send(JSON.stringify(data));
+            req.send(data);
         });
     }
     export async function ioSaveFile(data: Blob, id: string, attribute: string, fileName: string): Promise<void> {
@@ -58,6 +58,9 @@ namespace ooo.doceditor {
     }
     export async function ioLoadFile(id: string, attribute: string, fileName: string): Promise<Blob> {
         return await ioRequestBlob("GET", undefined, "file/" + id + "/" + attribute + "/" + fileName);
+    }
+    export async function ioGetFileList(id: string, attribute: string): Promise<any> {
+        return await ioRequestJson("GET", undefined, "filelist/" + id + "/" + attribute);
     }
 
     export async function ioLocalSave(blob: Blob, filename: string) {

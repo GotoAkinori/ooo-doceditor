@@ -78,9 +78,9 @@ namespace ooo.doceditor {
             }
         }
 
-        public static setElementsLoadDocumentInfo(dataHolder: { [key: string]: any }) {
+        public static setElementsLoadDocumentInfo(dataHolder: { [key: string]: any }, viewer: DeViewer) {
             for (let key in deElementList) {
-                elements.DeElementDef.fireSetData(deElementList[key], dataHolder);
+                elements.DeElementDef.fireSetData(deElementList[key], dataHolder, viewer);
             }
         }
 

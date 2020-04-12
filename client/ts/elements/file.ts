@@ -32,8 +32,27 @@ namespace ooo.doceditor.elements {
                     = element.extValues.files;
             }
         }
-        def.onSetData = (element, dataHolder) => {
-            console.log("TODO");
+        def.onSetData = async (element, dataHolder, viewer) => {
+            const name = element.values.attributes.name;
+            if (name) {
+                const filelist = await ioGetFileList(viewer.docId, name);
+
+                if (element.extValues.files === undefined) {
+                    element.extValues.files = [];
+                }
+                for (let file of filelist) {
+                    try {
+                        element.extValues.files.push({
+                            filename: file,
+                            file: await ioLoadFile(viewer.docId, name, file)
+                        });
+                    } catch (ex) {
+                        console.log("Can't get file [" + file + "]");
+                        console.log(ex);
+                    }
+                }
+                updateFileName(element);
+            }
         }
 
         function onDragOver(ev: DragEvent) {
